@@ -1,4 +1,5 @@
 from stats import *
+import sys
 
 def get_book_text(book_path):
     with open(book_path) as book:
@@ -6,7 +7,11 @@ def get_book_text(book_path):
     return book_content
 
 def main():
-    book_path = "books/frankenstein.txt"
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    book_path = sys.argv[1]
+    #book_path = "books/frankenstein.txt"
     book_content = get_book_text(book_path) 
     counter = word_counter(book_content)
     dictionar = char_counter(book_content)
